@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import AboutPage from './pages/AboutPage'
 
 // IMPORTANT: For the blinking cursor animation, ensure this CSS is available
 // in your project's global stylesheet (e.g., src/index.css or src/App.css):
@@ -21,6 +22,7 @@ const App = () => {
     "Hola.",
     "Bonjour.",
     "Hallo.",
+    "Merhaba.",
     "Ciao.",
     "Olá.",
     "你好.",
@@ -44,6 +46,8 @@ const App = () => {
   const [typingSpeed, setTypingSpeed] = useState(100);
   // State to control the visibility of the intro screen
   const [showIntro, setShowIntro] = useState(true);
+  const introShown = useRef(false);
+  const [currentPage, setCurrentPage] = useState('home'); // State to track the current page
 
   // useEffect hook to manage the typing and deleting animation
   useEffect(() => {
@@ -88,9 +92,13 @@ const App = () => {
 
   // useEffect hook to handle user interaction and fade out the intro
   useEffect(() => {
+    if (introShown.current) {
+      setShowIntro(false);
+      return;
+    }
     const handleInteraction = () => {
-      console.log('Interaction detected! Hiding intro.'); // Add this line
-      setShowIntro(false); // Hide the intro screen on any interaction
+      setShowIntro(false);
+      introShown.current = true;
     };
 
     // Introduce a small delay before attaching event listeners
@@ -101,18 +109,19 @@ const App = () => {
       window.addEventListener('mousemove', handleInteraction);
       window.addEventListener('keydown', handleInteraction);
       window.addEventListener('click', handleInteraction);
-      console.log('Event listeners attached.'); // Added for debugging
-    }, 500); // Delay for 500 milliseconds (0.5 seconds)
-
-    // Cleanup function: Remove event listeners and clear the delay timeout
+    }, 500);
     return () => {
-      clearTimeout(delayTimeout); // Clear the delay timeout if component unmounts early
+      clearTimeout(delayTimeout);
       window.removeEventListener('mousemove', handleInteraction);
       window.removeEventListener('keydown', handleInteraction);
       window.removeEventListener('click', handleInteraction);
       console.log('Event listeners removed.'); // Added for debugging
     };
   }, []); // Empty dependency array means this effect runs once on mount
+
+  const navigateTo = (page) => {
+    setCurrentPage(page); // Function to update the current page state
+  };
 
   return (
       <>
@@ -135,13 +144,13 @@ const App = () => {
         {/* Main Website Content - hidden until intro fades out */}
         <div
             className={`min-h-screen bg-[#202A44] text-white flex flex-col
-                    transition-opacity duration-1000 ease-out
-                    ${showIntro ? 'opacity-0' : 'opacity-100'}`}
+                    transition-opacity duration-700 ease-in
+                    ${showIntro ? 'opacity-0' : fadeIn ? 'opacity-100' : 'opacity-0'}`}
         >
           {/* Header Section */}
           <header className="flex justify-between items-center p-6 md:p-8 w-full">
             {/* Left: Name/Logo */}
-            <div className="text-xl md:text-2xl font-bold font-inter">
+            <div className="text-xl md:text-2xl font-light font-inter">
               Mikail Sari
             </div>
             {/* Right: Navigation Links */}
