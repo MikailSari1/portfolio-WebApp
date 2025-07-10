@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import ProjectsPage from "./pages/ProjectsPage";
 
 // IMPORTANT: For the blinking cursor animation, ensure this CSS is available
 // in your project's global stylesheet (e.g., src/index.css or src/App.css):
@@ -165,7 +167,8 @@ const App = () => {
                             <li><Link to="/about"
                                       className={"text-text hover:text-gray-400 transition-colors ${window.location.pathname === '/about' ? 'font-bold' : ''}"}>About</Link>
                             </li>
-                            <li><a href="#" className="text-text hover:text-gray-400 transition-colors">Contact</a></li>
+                            <li><Link to="/contact"
+                                      className={"text-text hover:text-gray-400 transition-colors ${window.location.pathname === '/contact' ? 'font-bold' : ''}"}>Contact</Link></li>
                         </ul>
                     </nav>
                     {/* Mobile Menu Icon (Placeholder for future implementation) */}
@@ -178,7 +181,8 @@ const App = () => {
                 <main className="text-text flex-grow flex items-center justify-center p-4">
                     <Routes>
                         <Route path="/about" element={<AboutPage/>}/>
-                        {/* Add more routes as needed */}
+                        <Route path="/contact" element={<ContactPage/>}/>
+                        <Route path="/projects" element={<ProjectsPage/>}/>
                         <Route path="/" element={<div/>}/>
                     </Routes>
                 </main>
@@ -190,15 +194,15 @@ const App = () => {
                     <div className="text-text mb-4 md:mb-0">
             <span
                 className="text-text inline-block px-3 py-1 text-sm md:text-base border border-gray-600 rounded-full text-gray-400">
-              Available for inquiries // Q2
+              Available for inquiries
             </span>
                     </div>
                     {/* Bottom Right */}
                     <div className="text-text text-right max-w-sm">
                         <p className="text-sm md:text-base mb-2 text-text">
-                            Freelancer and Web Developer based in the Netherlands.
+                            Code Developer based in the Netherlands.
                         </p>
-                        <a href="#"
+                        <a href="contact"
                            className=" text-md md:text-lg font-bold hover:text-gray-400 transition-colors flex items-center justify-end">
                             Interested ?
                             <span className="ml-2">→</span> {/* Right arrow */}
