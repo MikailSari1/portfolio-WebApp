@@ -17,23 +17,28 @@ const ContactPage = () => {
             <div className="flex flex-col md:flex-row justify-between w-full mb-12 md:mb-20 lg:mb-24">
                 {/* Left Column: Send a message (Form) */}
                 <div className="w-full md:w-1/2 pr-0 md:pr-12 mb-12 md:mb-0">
-                    <h2 className="text-2xl md:text-3xl font-light mb-6">Send a message</h2>
+                    <h2 className="text-xl md:text-2xl font-light mb-6">Send a message</h2>
                     <form className="space-y-6">
-                        <div className="flex flex-col md:flex-row md:space-x-4 space-y-6 md:space-y-0">
-                            <input
-                                type="text"
-                                placeholder="Name"
-                                className="flex-1 placeholder:italic text-left bg-primary border-b-2 border-primary focus:border-text focus:bg-primary focus:shadow-lg focus:ring-2 focus:ring-text outline-none pb-2 text-lg px-4 focus:text-text text-text"
-                            />
-                            <input
-                                type="email"
-                                placeholder="Email"
-                                className="flex-1 placeholder:italic bg-primary border-b-2 border-primary focus:border-text focus:bg-primary focus:shadow-lg focus:ring-2 focus:ring-text outline-none pb-2 text-lg px-4 focus:text-text text-text"
-                            />
+                        {/* Connected underline for Name and Email */}
+                        <div className="relative">
+                            <div className="flex flex-col md:flex-row md:space-x-4 space-y-6 md:space-y-0">
+                                <input
+                                    type="text"
+                                    placeholder="Name"
+                                    className="flex-1 placeholder:italic text-left bg-primary focus:bg-primary focus:shadow-lg focus:ring-2 focus:ring-text outline-none pb-2 text-lg px-4 focus:text-text text-text border-b-2"
+                                />
+                                <input
+                                    type="email"
+                                    placeholder="Email"
+                                    className="flex-1 placeholder:italic bg-primary focus:bg-primary focus:shadow-lg focus:ring-2 focus:ring-text outline-none pb-2 text-lg px-4 focus:text-text text-text border-b-2"
+                                />
+                            </div>
+                            {/* White underline that disappears on focus */}
+                            <div className="absolute left-0 right-0 bottom-0 h-0.5 bg-white transition-all duration-200 pointer-events-none group-focus-within:opacity-0" />
                         </div>
                         <textarea
                             placeholder="Your message..."
-                            className="w-full placeholder:italic place-content-baseline bg-primary border-b-2 border-primary focus:border-text  focus:shadow-lg focus:ring-2 focus:ring-text outline-none pb-2 text-lg resize-y px-4 focus:text-text text-text"
+                            className="w-full placeholder:italic place-content-baseline bg-primary  focus:border-text  focus:shadow-lg focus:ring-2 focus:ring-text outline-none pb-2 text-lg resize-y px-4 focus:text-text text-text border-b-2"
                         ></textarea>
                         <button
                             type="submit"

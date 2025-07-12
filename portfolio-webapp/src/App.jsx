@@ -35,7 +35,6 @@ const App = () => {
         "नमस्ते.",
         "สวัสดี.",
         "مرحبا.",
-        "שלום.",
     ];
 
     // State for the index of the current phrase in the 'phrases' array
